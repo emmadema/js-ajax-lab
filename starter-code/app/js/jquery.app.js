@@ -1,16 +1,34 @@
 $( document ).ready(function() {
     console.log( "ready!" );
 
+    
+
+
+
     //get the information from the cats API and log in the console
-    $.get('https://ga-cat-rescue.herokuapp.com/api/cats', function(data){
-    	$('body')
-    		.append("name: " + data.name, "note: " + data.note, "image: " + data.image);
-    }, "json");
-    	//.done(function(data){
-    	//	console.log(data);
-    	//});
+   $.get('https://ga-cat-rescue.herokuapp.com/api/cats')
+    	.done(function(data){
+    		//console.log(data);
+    	//var allCats = JSON.stringify(data);
+    	//console.log(allCats);
+    	var allCats = JSON.parse(data);
+    	console.log(allCats);
+    	for( i=0; i < allCats.length; i++){
+			$('ul').append(allCats[i].name);
+			$('ul').append(allCats[i].note);
+			$('ul').append(allCats[i].image);
+		}
+		//console.log(jsCats.name);
+
+    	
+    });
 
 
+    	//for (i=0; i<allCats.length; i++){
+    	//var cats = allCats.responseText;
+		//var jsonResponse = JSON.parse(cats);
+		//console.log(jsonResponse["cats"]);
+    	//$('ul').append(allCats.responseText);
 });
 //TO DO:
 //Make a list of existing cats appear underneath the form.
