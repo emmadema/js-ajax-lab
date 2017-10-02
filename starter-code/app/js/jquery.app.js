@@ -14,16 +14,13 @@ $( document ).ready(function() {
     	var allCats = JSON.parse(data);
     	console.log(allCats);
     	for( i=0; i < allCats.length; i++){
-			$('ul').append(allCats[i].name);
-			$('ul').append(allCats[i].note);
-			$('ul').append(allCats[i].image);
-		}
-		//console.log(jsCats.name);
-
-    	
+			$('#cats').append('<li>' + allCats[i].name + ' - ' + allCats[i].note + '</li>');
+			//$('#cats').append(allCats[i].note);
+			//$('#cats').append(allCats[i].image);
+		}	
     });
 
-
+    	//+ " " + allCats[i].image + 
     	//for (i=0; i<allCats.length; i++){
     	//var cats = allCats.responseText;
 		//var jsonResponse = JSON.parse(cats);
