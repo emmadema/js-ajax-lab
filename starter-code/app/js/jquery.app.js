@@ -8,24 +8,36 @@ $( document ).ready(function() {
     //get the information from the cats API and log in the console
    $.get('https://ga-cat-rescue.herokuapp.com/api/cats')
     	.done(function(data){
-    		//console.log(data);
-    	//var allCats = JSON.stringify(data);
-    	//console.log(allCats);
     	var allCats = JSON.parse(data);
     	console.log(allCats);
     	for( i=0; i < allCats.length; i++){
 			$('#cats').append('<li>' + allCats[i].name + ' - ' + allCats[i].note + '</li>');
 			//$('#cats').append(allCats[i].note);
 			//$('#cats').append(allCats[i].image);
-		}	
+		}
+		
     });
 
-    	//+ " " + allCats[i].image + 
-    	//for (i=0; i<allCats.length; i++){
-    	//var cats = allCats.responseText;
-		//var jsonResponse = JSON.parse(cats);
-		//console.log(jsonResponse["cats"]);
-    	//$('ul').append(allCats.responseText);
+   	$('#new-cat').on("submit", function (e) {
+		e.preventDefault();
+		var catName = ($('#cat-name').val());
+		var catNote = ($('#cat-note').val());
+		var newCat = ['<li>' + catName + ' ' + catNote + '</li>'];
+		$('#cats').append(newCat);
+
+		newCat = {
+			name: catName,
+			note: catNote
+		};
+		$.ajax ({
+   		type: "POST",
+   		data: JSON.stringify(newCat),
+   		url: ('https://ga-cat-rescue.herokuapp.com/api/cats')
+   		//contentType: "application/json"
+   		});
+	});	
+
+   	
 });
 //TO DO:
 //Make a list of existing cats appear underneath the form.
