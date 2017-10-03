@@ -29,6 +29,7 @@ $( document ).ready(function() {
 			name: catName,
 			note: catNote
 		};
+		
 		$.ajax ({
    		type: "POST",
    		data: JSON.stringify(newCat),
